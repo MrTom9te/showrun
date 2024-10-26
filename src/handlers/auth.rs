@@ -2,7 +2,7 @@ use actix_web::{get, post, HttpResponse, Responder};
 
 #[post("/api/login")]
 pub async fn login() -> impl Responder {
-    HttpResponse::Ok().body("login")
+    HttpResponse::Ok().body("endpoint login")
 }
 
 #[post("/api/logout")]
