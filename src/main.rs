@@ -10,20 +10,9 @@ use sqlx::{
     Pool, Postgres,
 };
 use std::env;
+mod handlers;
 mod models;
 mod service;
-
-#[derive(Debug, Serialize, Deserialize)]
-struct HelloMenor {
-    h: String,
-}
-
-#[get("/api/hello")]
-async fn hello_api() -> web::Json<HelloMenor> {
-    web::Json(HelloMenor {
-        h: "Hello menor".to_string(),
-    })
-}
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -40,7 +29,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         App::new()
             .app_data(web::Data::new(pool.clone()))
-            .service(hello_api)
+            .configure(handlers::configure_routes)
     })
     .bind(("127.0.0.1", 8080))?
     .run()

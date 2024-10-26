@@ -29,3 +29,9 @@ pub struct Tarefa {
     pub criado_em: NaiveDateTime,
     pub atualizado_em: NaiveDateTime,
 }
+
+#[derive(Debug, Deserialize)]
+pub struct LogInfo {
+    pub email: String,
+    pub senha: String,
+}
